@@ -1,0 +1,15 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}{{ forum.topic }}{% endblock %}
+
+{% block content %}
+  {{ forum.topic }} <br>
+  {{ forum.text|safe }} <br>
+  {{ forum.date }} <br>
+  {% if user.is_authenticated %}
+    {% if user.id == forum.publisher.id %}
+      <a href="{% url 'edit-article' forum.pk %}"><small>(edit)</small></a>
+      <a href="{% url 'delete-article' forum.pk %}"><small>(delete)</small></a>
+    {% endif %}
+  {% endif %}
+{% endblock %}

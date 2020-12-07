@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}New form{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <form method="POST">
+            <div class="form-group">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-info">Send</button>
+            </div>
+        </form>
+    {% else %}
+        <p></p>Please, login to visit this page.</p>
+    {% endif %}
+{% endblock %}

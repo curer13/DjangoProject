@@ -1,0 +1,21 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Delete {{ forum.topic }}{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        {% if user.id == forum.publisher.id %}
+            <form method="POST">
+                <div class="form-group">
+                    {% csrf_token %}
+                    <strong>Are you sure you want to delete '{{ forum.topic }}'?</strong><br>
+                    <button type="submit" class="btn btn-info">Delete</button>
+                </div>
+            </form>
+        {% else %}
+            <h1>You are not supposed to be here.</h1>
+        {% endif %}
+    {% else %}
+        <p></p>Please, login to visit this page.</p>
+    {% endif %}
+{% endblock %}

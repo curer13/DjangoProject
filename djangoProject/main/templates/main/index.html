@@ -1,0 +1,18 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Testing{% endblock %}
+
+{% block content %}
+    {% for post in object_list %}
+        <div class="alert alert-warning">
+            <a href="{% url 'article-detail' post.pk %}"><h3>{{ post.topic }}</h3></a>
+            <p>{{ post.text|safe|slice:":200" }}</p>
+            {% if user.is_authenticated %}
+                {% if user.id == post.publisher.id %}
+                    <a href="{% url 'edit-article' post.pk %}"><small>(edit)</small></a>
+                    <a href="{% url 'delete-article' post.pk %}"><small>(delete)</small></a>
+                {% endif %}
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endblock %}
