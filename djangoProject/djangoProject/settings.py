@@ -125,6 +125,8 @@ STATIC_URL = '/static/'
     BASE_DIR / "static",
     '/var/www/static/',
 ]'''
+STATIC_ROOT = "/var/www/curer.pythonanywhere.com/static/"
+
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
